@@ -1,0 +1,163 @@
+.quantum-realm {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+.stars,
+.twinkling,
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000
+    url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top
+    center;
+  z-index: 0;
+}
+
+.twinkling {
+  background: transparent
+    url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat
+    top center;
+  z-index: 1;
+  animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+  background: transparent
+    url(http://www.script-tutorials.com/demos/360/images/clouds.png) repeat top
+    center;
+  z-index: 2;
+  opacity: 0.4;
+  animation: move-clouds-back 200s linear infinite;
+}
+
+.particle {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.1s ease-out;
+  z-index: 1000; /* Increased z-index to be above other elements */
+}
+
+.particle:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+}
+
+.bubble {
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.comet {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.asteroid {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+h1,
+h2,
+p {
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 100; /* Lower than particles but higher than background */
+  pointer-events: none; /* This allows clicks to pass through */
+}
+
+h1 {
+  padding-top: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin-bottom: 20px;
+  z-index: 100; /* Lower than particles but higher than background */
+  pointer-events: none; /* This allows clicks to pass through */
+}
+
+.game-info p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.level-select,
+.game-over {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 2000; /* Higher than particles to be clickable */
+}
+
+.difficulty-button,
+.start-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+  z-index: 2000; /* Higher than particles to be clickable */
+}
+
+.difficulty-button:hover,
+.start-button:hover {
+  background-color: #45a049;
+}
+
+.difficulty-button.selected {
+  background-color: #45a049;
+  box-shadow: 0 0 10px #4caf50;
+}
